@@ -12,7 +12,12 @@ import lombok.*;
 public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_color")
     private Integer idColor;
 
+    @Column(name = "nombre_color")
     private String nombreColor;
+
+    @Column(nullable = false)
+    private String estado; // ACTIVO, INACTIVO, ELIMINADO, etc.
 }

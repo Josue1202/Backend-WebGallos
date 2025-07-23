@@ -12,8 +12,14 @@ import lombok.*;
 public class RolUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_rol")
     private Integer idRol;
 
+    @Column(name = "nombre_rol")
     private String nombreRol;
+
     private String descripcion;
+
+    @Column(nullable = false)
+    private String estado; // ACTIVO, INACTIVO, ELIMINADO, etc.
 }

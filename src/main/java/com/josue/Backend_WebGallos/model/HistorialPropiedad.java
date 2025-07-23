@@ -2,9 +2,8 @@ package com.josue.Backend_WebGallos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "historial_propiedad")
@@ -15,6 +14,7 @@ import java.sql.Date;
 public class HistorialPropiedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_historial")
     private Integer idHistorial;
 
     @ManyToOne
@@ -29,7 +29,14 @@ public class HistorialPropiedad {
     @JoinColumn(name = "id_propietario_nuevo")
     private Propietario propietarioNuevo;
 
-    private Date fechaTransferencia;
+    @Column(name = "fecha_transferencia")
+    private LocalDate fechaTransferencia;
+
+    @Column(name = "precio_venta")
     private BigDecimal precioVenta;
+
     private String motivo;
+
+    @Column(nullable = false)
+    private String estado; // VIGENTE, ANULADO, ELIMINADO, etc.
 }

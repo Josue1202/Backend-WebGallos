@@ -2,8 +2,7 @@ package com.josue.Backend_WebGallos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "reproduccion")
@@ -14,6 +13,7 @@ import java.sql.Date;
 public class Reproduccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_reproduccion")
     private Integer idReproduccion;
 
     @ManyToOne
@@ -24,7 +24,9 @@ public class Reproduccion {
     @JoinColumn(name = "id_madre")
     private Animal madre;
 
-    private Date fechaCruza;
+    @Column(name = "fecha_cruza")
+    private LocalDate fechaCruza;
+
     private Integer cantidadHuevos;
     private Integer cantidadNacidos;
     private Integer cantidadSobrevivientes;
@@ -33,4 +35,7 @@ public class Reproduccion {
     @ManyToOne
     @JoinColumn(name = "registrado_por")
     private Usuario registradoPor;
+
+    @Column(nullable = false)
+    private String estado; // VIGENTE, ANULADO, ELIMINADO, etc.
 }

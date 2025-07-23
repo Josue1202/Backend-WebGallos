@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 public class Genealogia {
     @Id
+    @Column(name = "id_animal")
     private Integer idAnimal; // Mismo id que animal
 
     @ManyToOne
@@ -20,4 +21,7 @@ public class Genealogia {
     @ManyToOne
     @JoinColumn(name = "id_madre")
     private Animal madre;
+
+    @Column(nullable = false)
+    private String estado; // VIGENTE, ELIMINADA, etc.
 }

@@ -2,8 +2,7 @@ package com.josue.Backend_WebGallos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "combate")
@@ -14,6 +13,7 @@ import java.sql.Date;
 public class Combate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_combate")
     private Integer idCombate;
 
     @ManyToOne
@@ -28,17 +28,41 @@ public class Combate {
     @JoinColumn(name = "id_gallo_2")
     private Animal gallo2;
 
-    private Date fecha;
+    @ManyToOne
+    @JoinColumn(name = "id_gallo_ganador")
+    private Animal galloGanador; // NUEVO
+
+    @ManyToOne
+    @JoinColumn(name = "id_gallo_perdedor")
+    private Animal galloPerdedor; // NUEVO
+
+    @Column(name = "es_empate")
+    private Boolean esEmpate; // NUEVO
+
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
     private String ronda;
-    private String resultado; // gallo1, gallo2, empate, descalificación
+    private String resultado; // Puedes usarlo como texto adicional (descalificación, KO, etc.)
+
+    @Column(name = "duracion_minutos")
     private Double duracionMinutos;
 
     @ManyToOne
     @JoinColumn(name = "id_juez")
     private Juez juez;
 
+    @Column(name = "video_url")
     private String videoUrl;
+
+    @Column(name = "lesion_gallo_1")
     private String lesionGallo1;
+
+    @Column(name = "lesion_gallo_2")
     private String lesionGallo2;
+
     private String observaciones;
+
+    @Column(nullable = false)
+    private String estado; // VIGENTE, ANULADO, ELIMINADO, etc. (NUEVO)
 }

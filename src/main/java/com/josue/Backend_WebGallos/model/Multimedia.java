@@ -2,8 +2,7 @@ package com.josue.Backend_WebGallos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "multimedia")
@@ -14,6 +13,7 @@ import java.sql.Date;
 public class Multimedia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_media")
     private Integer idMedia;
 
     @ManyToOne
@@ -23,5 +23,10 @@ public class Multimedia {
     private String tipo; // foto, video
     private String url;
     private String descripcion;
-    private Date fecha;
+
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
+    @Column(nullable = false)
+    private String estado; // ACTIVO, ELIMINADO, etc.
 }

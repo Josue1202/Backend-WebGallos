@@ -2,8 +2,7 @@ package com.josue.Backend_WebGallos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "torneo")
@@ -14,11 +13,18 @@ import java.sql.Date;
 public class Torneo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_torneo")
     private Integer idTorneo;
 
+    @Column(name = "nombre_torneo")
     private String nombreTorneo;
-    private Date fechaInicio;
-    private Date fechaFin;
+
+    @Column(name = "fecha_inicio")
+    private LocalDate fechaInicio;
+
+    @Column(name = "fecha_fin")
+    private LocalDate fechaFin;
+
     private String ubicacion;
     private String tipo;
     private String estado;
